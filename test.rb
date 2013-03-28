@@ -10,8 +10,15 @@ require_relative 'perm_check'
 num_players = 3
 size = 6
 total_number = num_players * size
+total_search_space = num_players ** total_number
+signal_fraction = 0.00
 
-(num_players ** total_number).times do |index|
+total_search_space.times do |index|
+  if index > total_search_space * signal_fraction
+    puts "\nProgress: #{100 * index/total_search_space}\%"
+    signal_fraction += 0.01
+  end
+
   state = index.to_s(3)
   state = '0' * (total_number - state.length) + state
 
@@ -30,8 +37,6 @@ total_number = num_players * size
   next if count['12'] != count['21']
   next if count['02'] != count['20']
 
-  print '.'
-
   perm_count = (size ** num_players) / 6.0
 
   next if count['012'] != perm_count
@@ -41,7 +46,6 @@ total_number = num_players * size
   next if count['102'] != perm_count
   next if count['021'] != perm_count
 
-  all_perms = [count['012'], count['021'], count['102'], count['120'], count['201'], count['210']]
-  puts "#{state}"
-  break
+  puts "\n#{state}"
+  # break
 end
