@@ -1,0 +1,14 @@
+Among all 66 results, if we call the first three 012, then these are all the results (subject to renaming)
+
+012 120 201 210 021 102
+012 201 120 210 102 021 ------ swapping groups 2 and 3, 5 and 6
+
+012 210 102 201 201 102 ------ mirror pairs: 1 and 2, 3 and 4, 5 and 6
+012 210 102 201 210 012 ------ mirror pairs
+012 210 120 021 201 102 ------ mirror pairs
+012 210 120 021 210 012 ------ mirror pairs
+012 210 201 102 102 201 ------ mirror pairs
+012 210 201 102 120 021 ------ mirror pairs
+012 210 210 012 102 201 ------ mirror pairs
+012 210 210 012 120 021 ------ mirror pairs
+012 201 211 002 012 201 ------ exception

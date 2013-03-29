@@ -10,8 +10,10 @@ require_relative 'perm_check'
 num_players = 3
 size = 6
 total_number = num_players * size
-total_search_space = num_players ** total_number
+total_search_space = num_players ** (total_number - 1) # minus one because we assume the smallest number is always player #0
 signal_fraction = 0.00
+
+output_file = File.open('output.txt', 'w')
 
 total_search_space.times do |index|
   if index > total_search_space * signal_fraction
@@ -19,7 +21,7 @@ total_search_space.times do |index|
     signal_fraction += 0.01
   end
 
-  state = index.to_s(3)
+  state = index.to_s(num_players)
   state = '0' * (total_number - state.length) + state
 
   valid = true
@@ -31,21 +33,9 @@ total_search_space.times do |index|
   end
   next if not valid
 
-  count = perm_check(state)
-
-  next if count['01'] != count['10']
-  next if count['12'] != count['21']
-  next if count['02'] != count['20']
-
-  perm_count = (size ** num_players) / 6.0
-
-  next if count['012'] != perm_count
-  next if count['120'] != perm_count
-  next if count['201'] != perm_count
-  next if count['210'] != perm_count
-  next if count['102'] != perm_count
-  next if count['021'] != perm_count
-
-  puts "\n#{state}"
-  # break
+  if perm_check(state)
+    puts "\n#{state}"
+    output_file.write(state + "\n")
+    output_file.flush
+  end
 end
