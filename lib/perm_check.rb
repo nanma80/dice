@@ -2,7 +2,6 @@ def perm_check(state)
   short_circuit_check(counts(state))
 end
 
-
 # source: https://code.google.com/p/gofirstdice/wiki/FastPermCheck
 # This algorithm was created by Landon Kryger to solve the problem of testing if a set of dice is fair. If you have n players and s sides, the standard approach would require you to test every roll and would run in O(s^n). This algorithm runs in approximately O(s*n*n!). For small s,n, it's not a very noticeable difference, but for large values like n=5;s=30 the benefit is huge.
 # This algorithm also works with dice with different number of sides.

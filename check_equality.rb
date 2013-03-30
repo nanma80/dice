@@ -1,4 +1,4 @@
-require_relative 'perm_check'
+require_relative 'lib/perm_check'
 
 state = 'abcddbaccbadcabddacbdbcadcbadcabbcaddacbbacdabcdacbdbcaddbacdabccabddcba'
 
