@@ -2,8 +2,8 @@ require_relative 'lib/variance'
 require_relative 'lib/all_perms'
 require_relative 'lib/perm_check'
 
-num_players = 4
-size = 12
+num_players = 5
+size = 30
 num_iter = 10
 
 perms = all_perms(num_players)
@@ -14,6 +14,9 @@ state_arr = [0]
 (size - 1).times do 
   state_arr << rand(num_perms)
 end
+# alternatively you may set the initial value
+state_arr = [0, 114, 55, 63, 93, 103, 60, 85, 58, 98, 118, 27, 36, 23, 0, 83, 49, 100, 65, 102, 62, 56, 26, 18, 74, 107, 114, 66, 63, 13]
+
 # convert state_arr to string
 state_str = state_arr.map{|index| perms[index]}.join
 state_score = score(state_str, num_players)
