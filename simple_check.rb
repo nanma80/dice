@@ -10,3 +10,5 @@ puts perm_check(state) # should return false
 state = '012120201210021102'
 puts perm_check(state) # should return true
 
+state = "012332013021130213203201"
+puts counts(state)

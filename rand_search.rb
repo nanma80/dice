@@ -1,12 +1,10 @@
-require_relative 'lib/variance'
 require_relative 'lib/all_perms'
 require_relative 'lib/perm_check'
 
-num_players = 4
-size = 12
+num_players = 5
+size = 30
 num_iter = 100
-num_neighbors = 400
-neighbor_distance = 2
+neighbor_distance = 1
 
 perms = all_perms(num_players)
 num_perms = perms.length
@@ -17,7 +15,7 @@ state_arr = [0]
   state_arr << rand(num_perms)
 end
 # alternatively you may set the initial value
-# state_arr = [0, 114, 55, 63, 93, 103, 60, 85, 58, 98, 118, 27, 36, 23, 0, 83, 49, 100, 65, 102, 62, 56, 26, 18, 74, 107, 114, 66, 63, 13]
+# state_arr = [0, 23, 14, 21, 19, 0, 18, 14, 9, 5, 3, 11]
 
 # convert state_arr to string
 state_str = state_arr.map{|index| perms[index]}.join
@@ -30,7 +28,7 @@ end
 best = [state_arr, state_str, state_score]
 
 num_iter.times do |iter_index|
-  num_neighbors = (50 * (iter_index ** 0.5) + 1).to_i
+  num_neighbors = (10 * (iter_index + 1) ** 0.5).to_i
 
   p [state_str, state_score]
 
@@ -41,10 +39,12 @@ num_iter.times do |iter_index|
   num_neighbors.times do 
     neighbor_state_arr = Array.new(state_arr)
 
-    neighbor_distance.times do 
-      rand_pos = rand(size - 1) + 1
-      neighbor_state_arr[rand_pos] += rand(num_perms - 1) + 1
-      neighbor_state_arr[rand_pos] %= num_perms
+    while neighbor_state_arr == state_arr
+      neighbor_distance.times do 
+        rand_pos = rand(size - 1) + 1
+        neighbor_state_arr[rand_pos] += rand(num_perms - 1) + 1
+        neighbor_state_arr[rand_pos] %= num_perms
+      end
     end
 
     neighbor_state_str = neighbor_state_arr.map{|index| perms[index]}.join
