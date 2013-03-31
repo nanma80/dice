@@ -1,3 +1,14 @@
+def score(state, level)
+  counts = counts(state)
+  array = []
+  counts.each do |key, value|
+    next if key.length != level
+    array << value
+  end
+
+  array.variance
+end
+
 def perm_check(state)
   short_circuit_check(counts(state))
 end
