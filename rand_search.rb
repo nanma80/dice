@@ -4,7 +4,7 @@ require_relative 'lib/perm_check'
 
 num_players = 4
 size = 12
-num_iter = 100
+num_iter = 10
 
 perms = all_perms(num_players)
 num_perms = perms.length
@@ -21,6 +21,8 @@ if state_score < 0.0000001
   p [state_str, state_score]
   return
 end
+
+best = [state_arr, state_str, state_score]
 
 num_iter.times do 
   p [state_str, state_score]
@@ -43,6 +45,10 @@ num_iter.times do
         output_file = File.open('output.txt', 'w')
         output_file.write(neighbor_state_str)
         return
+      end
+
+      if neighbor_state_score < best[2]
+        best = [neighbor_state_arr, neighbor_state_str, neighbor_state_score]
       end
 
       neighbors_arr << neighbor_state_arr
@@ -89,3 +95,8 @@ num_iter.times do
     state_score = neighbors_score[selected]
   end
 end
+
+puts "Cannot find permutation fair dice after #{num_iter} round of search. The best so far is:"
+p best
+output_file = File.open('output.txt', 'w')
+output_file.write(best)
