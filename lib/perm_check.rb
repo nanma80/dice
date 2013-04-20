@@ -1,3 +1,5 @@
+require_relative 'variance'
+
 def score(state, level)
   counts = counts(state)
   array = []

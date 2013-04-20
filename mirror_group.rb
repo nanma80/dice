@@ -5,7 +5,6 @@ num_players = 4
 size = 12 # must be even
 # Unfortunately, (4, 12) generates no result
 
-
 perms = all_perms(num_players)
 num_perms = perms.length
 
