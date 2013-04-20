@@ -10,3 +10,7 @@ puts perm_check(state) # should return false
 state = '012120201210021102'
 puts perm_check(state) # should return true
 
+state = 'eddcdbcddaadbddddadcccddddbbddddcccdaddddbdaaddcbdcddeeeeeddcdbcddaadbddddadcccddddbbddddcccdaddddbdaaddcbdcddeddcdbcddaadbddddadcccddddbbddddcccdaddddbdaaddcbdcddeeeeeeddcdbcddaadbddddadcccddddbbddddcccdaddddbdaaddcbdcddeddcdbcddaadbddddadcccddddbbddddcccdaddddbdaaddcbdcddeeeeeddcdbcddaadbddddadcccddddbbddddcccdaddddbdaaddcbdcdde'
+puts perm_check(state)
+
+puts counts_by_length(counts(state))['5']
